@@ -1,4 +1,7 @@
 # easygoogletranslate
+
+This is a fork in which I moved the python script into the npm module for node js
+https://www.npmjs.com/package/free-google-translate
         
 Unofficial Google Translate API. 
 
@@ -13,7 +16,7 @@ Detailed language list can be found here:  https://cloud.google.com/translate/do
 
 
 ## Installation:
-The easiest way to install easygoogletranslateis to download it from PyPI. Then you will be able to use the library.
+The easiest way to install easygoogletranslateis to download it from npm. Then you will be able to use the library.
 
 ```
 npm i free-google-translate
