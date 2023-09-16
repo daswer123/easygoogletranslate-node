@@ -23,7 +23,7 @@ npm i free-google-translate
 ## Examples:
 1. Specify default source and target language at beginning and use it any time.
 ```
-const EasyGoogleTranslate = require('free-google-translate');
+import EasyGoogleTranslate from "free-google-translate"
 
 const translator = new EasyGoogleTranslate(
     'en',
@@ -40,7 +40,7 @@ translator.translate('This is an example.')
 
 2. Don't specify default parameters.
 ```
-const EasyGoogleTranslate = require('free-google-translate');
+import EasyGoogleTranslate from "free-google-translate"
 const translator = new EasyGoogleTranslate();
 
 translator.translate('This is an example.', 'tr')
@@ -52,8 +52,7 @@ translator.translate('This is an example.', 'tr')
 
 3. Override default parameters.
 ```
-const EasyGoogleTranslate = require('free-google-translate');
-
+import EasyGoogleTranslate from "free-google-translate"
 const translator = new EasyGoogleTranslate('tr');
 
 translator.translate('This is an example.', 'fr')
@@ -65,7 +64,7 @@ translator.translate('This is an example.', 'fr')
 
 4. Translate a text in multiple languages at once via multi-threading.
 ```
-const EasyGoogleTranslate = require('free-google-translate');
+import EasyGoogleTranslate from "free-google-translate"
 
 const translator = new EasyGoogleTranslate();
 const text = This is an example
@@ -83,8 +82,8 @@ Promise.all([
 
 5. Translate a file in multiple languages at once via multi-threading.
 ```
-const fs = require('fs').promises;
-const EasyGoogleTranslate = require('free-google-translate');
+import fs from "fs/promises"
+import EasyGoogleTranslate from "free-google-translate"
 
 const translator = new EasyGoogleTranslate();
 

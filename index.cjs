@@ -1,8 +1,8 @@
-import axios from 'axios';
-import cheerio from 'cheerio';
-import fs from 'fs/promises';
+const axios = require('axios');
+const cheerio = require('cheerio');
+const fs = require('fs').promises;
 
-export default class EasyGoogleTranslate {
+class EasyGoogleTranslate {
     constructor(sourceLanguage = 'auto', targetLanguage = 'tr', timeout = 5000) {
         this.sourceLanguage = sourceLanguage;
         this.targetLanguage = targetLanguage;
@@ -40,3 +40,5 @@ export default class EasyGoogleTranslate {
         return this.translate(text, targetLanguage, sourceLanguage);
     }
 }
+
+module.exports = EasyGoogleTranslate;
