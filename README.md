@@ -16,69 +16,89 @@ Detailed language list can be found here:  https://cloud.google.com/translate/do
 The easiest way to install easygoogletranslateis to download it from PyPI. Then you will be able to use the library.
 
 ```
-pip install easygoogletranslate
+npm i free-google-translate
 ```
 
 
 ## Examples:
 1. Specify default source and target language at beginning and use it any time.
 ```
-from easygoogletranslate import EasyGoogleTranslate
+const EasyGoogleTranslate = require('free-google-translate');
 
-translator = EasyGoogleTranslate(
-    source_language='en',
-    target_language='de',
-    timeout=10
-)
-result = translator.translate('This is an example.')
+const translator = new EasyGoogleTranslate(
+    'en',
+    'de',
+    10000
+);
 
-print(result) 
-# Output: Dies ist ein Beispiel.
+translator.translate('This is an example.')
+    .then(result => console.log(result))
+    .catch(error => console.error(error));
+
+// Output: Dies ist ein Beispiel.
 ```
 
 2. Don't specify default parameters.
 ```
-from easygoogletranslate import EasyGoogleTranslate
+const EasyGoogleTranslate = require('free-google-translate');
+const translator = new EasyGoogleTranslate();
 
-translator = EasyGoogleTranslate()
-result = translator.translate('This is an example.', target_language='tr')
+translator.translate('This is an example.', 'tr')
+    .then(result => console.log(result))
+    .catch(error => console.error(error));
 
-print(result)
-# Output: Bu bir örnektir.
+// Output: Bu bir örnektir.
 ```
 
 3. Override default parameters.
 ```
-from easygoogletranslate import EasyGoogleTranslate
+const EasyGoogleTranslate = require('free-google-translate');
 
-translator = EasyGoogleTranslate(target_language='tr')
-result = translator.translate('This is an example.', target_language='fr')
+const translator = new EasyGoogleTranslate('tr');
 
-print(result)
-# Output: Ceci est un exemple.
+translator.translate('This is an example.', 'fr')
+    .then(result => console.log(result))
+    .catch(error => console.error(error));
+    
+// Output: Ceci est un exemple.
 ```
 
 4. Translate a text in multiple languages at once via multi-threading.
 ```
-from easygoogletranslate import EasyGoogleTranslate
+const EasyGoogleTranslate = require('free-google-translate');
 
-translator = EasyGoogleTranslate()
-result = translator.translate(text='This is an example.', target_language=['tr', 'fr', 'de'])
+const translator = new EasyGoogleTranslate();
+const text = This is an example
 
-print(result)
-# Output: ['Bu bir örnektir.', 'Ceci est un exemple.', 'Dies ist ein Beispiel.']
+Promise.all([
+    translator.translate(text, 'tr'),
+    translator.translate(text, 'fr'),
+    translator.translate(text, 'de')
+])
+.then(results => console.log(results))
+.catch(error => console.error(error));
+
+// Output: ['Bu bir örnektir.', 'Ceci est un exemple.', 'Dies ist ein Beispiel.']
 ```
 
 5. Translate a file in multiple languages at once via multi-threading.
 ```
-from easygoogletranslate import EasyGoogleTranslate
+const fs = require('fs').promises;
+const EasyGoogleTranslate = require('free-google-translate');
 
-translator = EasyGoogleTranslate()
-result = translator.translate_file(file_path='text.txt', target_language=['tr', 'fr', 'de'])
+const translator = new EasyGoogleTranslate();
 
-print(result)
-# Output: ['Nasılsın?', 'Comment ca va?', 'Wie geht es Ihnen?']
-# Text inside file: How are you?
+fs.readFile('text.txt', 'utf8')
+    .then(text => Promise.all([
+        translator.translate(text, 'tr'),
+        translator.translate(text, 'fr'),
+        translator.translate(text, 'de')
+    ]))
+    .then(results => console.log(results))
+    .catch(error => console.error(error));
+
+// Output: ['Nasılsın?', 'Comment ca va?', 'Wie geht es Ihnen?']
+// Text inside file: How are you?
 ```
 
 ## Disclaimer
